@@ -1,0 +1,137 @@
+<% include ../partials/header %>
+
+<section id="show" class="js--wp-1">
+ <div class="show-header" id="top">
+  <img src="<%= blog.image1 %>" class="show-image1">
+   <div class="show-content-1">
+    <h5><%= blog.name %></h5>
+   </div>
+   <div class="show-content-2">
+    <p><%= blog.detail %></p>
+   </div>
+ </div>
+ 
+  <div class="container show-author-content">
+   <p>Written By <em><%= blog.author.email %></em> </p><br>
+   <p><em>Submitted at: <%= moment(blog.createdAt).fromNow() %></em></p>
+  </div>
+ 
+  <div class="show-main">
+   <p><%= blog.paragraph1 %></p>
+   <img src="<%= blog.image2 %>" class="show-image2">
+   
+    <div class="show-context text-center">
+     <figure class="show-quote">
+      <blockquote class="show-quote-text">
+       You turn it on and start creating.
+       We’re leveling the playing field to<br> empower kids, designers, startups or 
+       anyone else who wants to build an Internet of 
+       Things <br>device and never thought they could.
+      </blockquote>
+     </figure>
+    </div>
+   </div>
+    
+   <div class="container my-5">
+    <div class="row">
+     
+      <div class="col-md-6">
+       <img src="https://picsum.photos/1980/1080/?mountain=3" class="show-image3">      
+      </div>
+      
+      <div class="col-md-6">
+       <p class="float-right"><%= blog.paragraph2 %></p>
+      </div>
+     
+    </div>
+   </div>
+   
+   <div class="show-context text-center">
+    <figure class="quote">
+     <blockquote class="quote-text">
+       Rather than get anxious about kids and technology, <br>let’s get anxious about kids who are struggling. <br>
+       It’s about being conscientious not just about our own children,<br> but about the communities we live in.
+     </blockquote>
+    </figure>
+   </div>
+   
+   <div id="map" class="m-auto d-block"></div>
+
+ <div class="container d-flex show-edit-box">
+ <% if(currentUser && blog.author.id.equals(currentUser._id)) { %>
+    <a href="/blogs/<%= blog._id %>/edit" class="btn-edit">Edit</a>
+    <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" class="delete-form">
+     <button class="btn-edit">Delete</button>
+    </form>
+    <% } %>
+
+ </div>
+
+    
+    
+    <div class="container-fluid p-5 mb-5 comment-box">
+     <div class="row p-5 bg-dark">
+      <h1 class="text-white text-uppercase">Comments</h1>
+  
+       <div class="col-sm-12 p-5 ">
+
+        <% blog.comments.forEach((comment) => { %>
+        <div class="container d-flex-box">
+         <div class="comment-left">
+          <p class="text-white text-uppercase p-0 mb-0 mt-5"><%= comment.author %></p>
+          <p class="text-white lead p-0 mt-0"><%= comment.text %></p>     
+         </div>
+          <p class="lead text-white"><%= moment(comment.createdAt).fromNow() %></p>
+          </div>
+        <% }); %>
+
+       </div>
+     </div>
+     
+     <% if(currentUser) { %>
+      <a href="/blogs/<%= blog._id %>/comments/new" class="btn-comment">Comments</a>
+     <% } %>
+     <a href="#top" class="btn-comment d-inline-block btn-move">Top</a>
+   </div>
+         
+</section> 
+
+
+
+
+
+
+<script>
+  function initMap() {
+    var lat = <%= blog.lat %>;
+    var lng = <%= blog.lng %>;
+    var center = {lat: lat, lng: lng };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= blog.name %><br />
+      <%= blog.location %></strong>
+      <p><%= blog.detail %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUGnknc--KS4yhxI5b4270u1voFN3oSGU&callback=initMap"></script>
+    
+
+
+<% include ../partials/footer %>
+

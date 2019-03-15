@@ -1,0 +1,68 @@
+<% include ../partials/header %>
+
+<header class="header-index text-dark py-5">
+ <h2>Stories That People Wanted To Share</h2>
+</header>
+
+<section id="section-1" class="p-5 mt-5">
+
+ <figure class="fig-header fig-header-1">
+  <img src="https://picsum.photos/1980/1080/?mountain=3" alt="Header Image" class="header-img">
+   <figcaption class="fig-body">
+    <h4><span>Lorem Ipsum is simply dummy text of the printing.</span></h4>
+    <a href="#" class="btn-fig">Read More &rarr; </a>
+   </figcaption>
+ </figure>
+ 
+  <figure class="fig-header fig-header-2">
+  <img src="https://picsum.photos/1980/1080/?sea=3" alt="Header Image" class="header-img">
+   <figcaption class="fig-body">
+    <h4><span>Lorem Ipsum is simply dummy text</span></h4>
+   </figcaption>
+ </figure>
+ 
+  <figure class="fig-header fig-header-3">
+  <img src="https://picsum.photos/1980/1080/?desert=3" alt="Header Image" class="header-img">
+   <figcaption class="fig-body">
+    <h4><span>Lorem Ipsum is simply dummy text.</span></h4>
+   </figcaption>
+ </figure>
+ 
+  <figure class="fig-header fig-header-4">
+  <img src="https://picsum.photos/1980/1080/?forest=3" alt="Header Image" class="header-img">
+   <figcaption class="fig-body">
+    <h4><span>Lorem Ipsum is simply dummy text.</span></h4>
+   </figcaption>
+ </figure>
+ 
+  <figure class="fig-header fig-header-5">
+  <img src="https://picsum.photos/1980/1080/?street=3" alt="Header Image" class="header-img">
+   <figcaption class="fig-body">
+    <h4><span>Lorem Ipsum is simply dummy text..</span></h4>
+   </figcaption>
+ </figure>
+ 
+</section>
+
+<section id="section-2">
+ <div class="container section-2">
+  <div class="row">
+  
+  <% blog.forEach((blog) => { %>
+   <div class="col-md-4 blog-margin">    
+    <a href="/blogs/<%= blog._id %>">
+      <div class="card blog-card">
+       <img src="<%= blog.image1 %>" class="card-image img-fluid">
+       <h5><%= blog.name %></h5>
+       <p><%= blog.detail.substring(0, 30) %>...</p>     
+       <p class="blog-card-name"><%= blog.author.username %></p>
+      </div>
+      </a>
+   </div>
+  <% }); %>
+  
+  </div>
+ </div>
+</section>
+
+<% include ../partials/footer %>

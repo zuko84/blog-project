@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+
+<section id="blog-new">
+<div class="container border border-dark lonin-box">
+ <h1 class="text-center my-5"> <i class="fas fa-code"></i>  Create Blog</h1>
+ <div class="row">
+ 
+  <div class="col-md-6">
+   <form action="/blogs" method="POST">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Name" name="blog[name]">
+    </div>
+
+    <div class="form-group">
+      <label for="image-1">Image-1</label>
+      <input type="text" class="form-control" id="image-1" placeholder="Image" name="blog[image1]">
+    </div>
+    
+    <div class="form-group">
+     <label for="paragraph-1">Example textarea</label>
+     <textarea class="form-control" id="paragraph-1" rows="12" name="blog[paragraph1]"></textarea>
+    </div>
+   </div>
+   
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="detail">Detail</label>
+      <input type="text" class="form-control" id="detail" placeholder="Detail" name="blog[detail]">
+    </div>
+    
+    <div class="form-group">
+      <label for="image-2">Image-2</label>
+      <input type="text" class="form-control" id="image-2" placeholder="Image" name="blog[image2]">
+    </div>
+
+    <div class="form-group">
+     <label for="paragraph-2">Example textarea</label>
+     <textarea class="form-control" id="paragraph-2" rows="12" name="blog[paragraph2]"></textarea>
+     </div>
+     
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" class="form-control" id="location" placeholder="Yosemite National Park, CA" name="blog[location]">
+    </div>
+    
+   </div>
+   
+    <button class="btn-comment">Submit</button>
+   </form>
+
+ </div>
+</div>
+</section>
+
+<% include ../partials/footer %>
